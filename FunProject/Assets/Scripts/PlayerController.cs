@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         Player1Movement();
         Player2Movement();
