@@ -102,7 +102,7 @@ public sealed class PlayerController : MonoBehaviour {
             pos2 += Up * Time.deltaTime * p2Speed;
             player2.position = pos2;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             pos2.x = Mathf.Clamp(player2.position.x, -4.5f, 4.5f);
             pos2 += Left * Time.deltaTime * p2Speed;
@@ -114,7 +114,7 @@ public sealed class PlayerController : MonoBehaviour {
             pos2 += Down * Time.deltaTime * p2Speed;
             player2.position = pos2;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             pos2.x = Mathf.Clamp(player2.position.x, -4.5f, 4.5f);
             pos2 += Right * Time.deltaTime * p2Speed;
