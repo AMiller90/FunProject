@@ -3,18 +3,6 @@ using System.Collections;
 
 public sealed class AIBall : MonoBehaviour {
 
-    private static AIBall instance;
-
-    public static AIBall self
-    {
-        get
-        {
-            if (instance == null)
-                instance = new AIBall();
-            return instance;
-        }
-    }
-
     private Rigidbody rb;
     private Rigidbody p1;
     private Rigidbody p2;
@@ -24,7 +12,7 @@ public sealed class AIBall : MonoBehaviour {
 
     // Use this for initialization
     void Start ()
-    { 
+    {
         SpawnBall();
 
         if (player1 == null)
@@ -58,13 +46,15 @@ public sealed class AIBall : MonoBehaviour {
 
         if (transform.position.z > player1.position.z)
         {
-            Debug.Log("Player2 Scored");
+            UIManager.P2Score += 1;
+            UIManager.CheckForVictory();
             StartCoroutine(Pause());
         }
 
         if (transform.position.z < player2.position.z)
         {
-            Debug.Log("Player1 Scored");
+            UIManager.P1Score += 1;
+            UIManager.CheckForVictory();
             StartCoroutine(Pause());
         }
     }

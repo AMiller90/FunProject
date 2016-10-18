@@ -1,20 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public sealed class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
 
-    private static PlayerController instance;
-
-    public static PlayerController self
-    {
-        get
-        {
-            if (instance == null)
-                instance = new PlayerController();
-            return instance;
-        }
-    }
     [SerializeField]
     private Transform player1;
     [SerializeField]
