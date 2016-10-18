@@ -2,39 +2,21 @@
 using System.Collections;
 
 public class AISeek : MonoBehaviour
-{
-    private Vector3 Speed = new Vector3(5,5,0);
-    private bool move = false;
-    private Transform computer;
+{    
     private Transform ball;
     float currentTime;
-	
-    void Seek()
+    
+    void Start ()
     {
-        float previousTime = currentTime++;
-        float deltaTime = currentTime - previousTime;
-        if (computer == null)
-        {
-            computer = GameObject.FindGameObjectWithTag("computer").transform;
-            if (ball == null)
-                if (ball = GameObject.FindGameObjectWithTag("ball").transform)
-                    if (computer.position != ball.position)
-                    {
-                        computer.position = new Vector3((Speed.x += ball.position.x), (Speed.y += ball.position.y), -10);
-                        move = true;
-                    }
-                    else
-                        move = false;
-        }
-    }
-
-	void Start ()
-    {
-
+        if (ball == null)
+            ball = GameObject.FindGameObjectWithTag("ball").transform;
     }
 	
 	void Update ()
     {
-        Seek();
-	}
+
+        float previousTime = currentTime++;
+        float deltaTime = currentTime - previousTime;
+        gameObject.transform.position = new Vector3(ball.position.x / 1.175f, ball.position.y / 1.175f, -14.5f);
+    }
 }
