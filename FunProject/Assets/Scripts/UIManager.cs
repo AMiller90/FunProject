@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public sealed class UIManager : MonoBehaviour
 {
@@ -18,6 +19,13 @@ public sealed class UIManager : MonoBehaviour
     private static Text P1Victorytext;
     [SerializeField]
     private static Text P2Victorytext;
+
+    private static Button MainMenuButton;
+    private static Button PlayAgainButton;
+    [SerializeField]
+    private static Text PlayAgaintext;
+    [SerializeField]
+    private static Text MainMenutext;
 
     private static float p1Score;
     private static float p2Score;
@@ -68,8 +76,26 @@ public sealed class UIManager : MonoBehaviour
         if (P2Victorytext == null)
             P2Victorytext = P2Canvas.GetComponentsInChildren<Text>()[2];
 
+        if (PlayAgaintext == null)
+            PlayAgaintext = P1Canvas.GetComponentsInChildren<Text>()[3];
+
+        if (PlayAgainButton == null)
+            PlayAgainButton = P1Canvas.GetComponentsInChildren<Button>()[0];
+
+        if (MainMenuButton == null)
+            MainMenuButton = P2Canvas.GetComponentsInChildren<Button>()[0];
+
+        if (MainMenutext == null)
+            MainMenutext = P2Canvas.GetComponentsInChildren<Text>()[3];
+
+        PlayAgainButton.interactable = false;
+        MainMenuButton.interactable = false;
+
         p1Score = 0;
         p2Score = 0;
+
+        P1Victorytext.text = "5 points wins";
+        P2Victorytext.text = "5 points wins";
     }
 	
 	void Update ()
@@ -80,18 +106,39 @@ public sealed class UIManager : MonoBehaviour
 
     public static void CheckForVictory()
     {
-        if (p1Score >= 2)
+        if (p1Score >= 5)
         {
+            Time.timeScale = 0;
             P1Victorytext.text = "You Win!";
             P2Victorytext.text = "You Lose!";
+            PlayAgainButton.interactable = true;
+            PlayAgaintext.text = "Play Again?";
+            MainMenuButton.interactable = true;
+            MainMenutext.text = "Main Menu";
         }
             
-
-        if (p2Score >= 2)
+        if (p2Score >= 5)
         {
+            Time.timeScale = 0;
             P2Victorytext.text = "You Win!";
             P1Victorytext.text = "You Lose!";
+            PlayAgainButton.interactable = true;
+            PlayAgaintext.text = "Play Again?";
+            MainMenuButton.interactable = true;
+            MainMenutext.text = "Main Menu";
         }
             
+    }
+
+    public void PlayAgainClicked()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void MainMenuClicked()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 }
